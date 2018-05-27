@@ -47,7 +47,7 @@ Ext.define('byzCorp.view.hrManagement', {
             id: 'hrGrid',
             margin: '0 2 0 0',
             autoLoad: true,
-            store: 'userDetail',
+            store: 'hrDetail',
             columns: [
                 {
                     xtype: 'gridcolumn',

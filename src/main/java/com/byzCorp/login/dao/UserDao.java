@@ -1,19 +1,14 @@
 package com.byzCorp.login.dao;
 
 import com.byzCorp.login.model.*;
-import com.byzCorp.model.LookUp;
+import com.byzCorp.model.HrLeave;
 import com.byzCorp.util.GenericDao;
 import com.byzCorp.util.MException;
 import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
 import org.hibernate.Query;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.sql.JoinType;
 import org.springframework.stereotype.Component;
 
-import java.awt.geom.Area;
 import java.util.List;
 import java.util.Map;
 
@@ -119,7 +114,7 @@ public class UserDao extends GenericDao {
         return q.list();
     }
 
-    public List<UserLeave> getUserLeave(Long userId) {
+    public List<HrLeave> getUserLeave(Long userId) {
         String hql = "Select new map(";
         hql += " ul.users.userId as userId," +
                 " ul.recordTypeId as recordTypeId," +
@@ -131,7 +126,7 @@ public class UserDao extends GenericDao {
                 " ul.leaveYear as leaveYear," +
                 " ul.status as status" +
                 ")";
-        hql += " From UserLeave ul " +
+        hql += " From HrLeave ul " +
                 " where 1=1";
 
         if(userId!=null){

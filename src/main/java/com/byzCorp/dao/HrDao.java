@@ -1,7 +1,8 @@
 package com.byzCorp.dao;
 
-import com.byzCorp.login.model.UserLeave;
+import com.byzCorp.model.HrLeave;
 import com.byzCorp.login.model.Users;
+import com.byzCorp.model.HrLeaveDetail;
 import com.byzCorp.util.GenericDao;
 import com.byzCorp.util.MException;
 import org.hibernate.Criteria;
@@ -14,7 +15,7 @@ import java.util.List;
 @Component
 public class HrDao extends GenericDao {
 
-    public List<Users> getUserDetail(Long userId) {
+    public List<Users> getHrDetail(Long userId) {
         String hql = "Select new map(";
         hql += " u.userId as userId," +
                 " u.userName as userName," +
@@ -83,9 +84,10 @@ public class HrDao extends GenericDao {
         criteria.add(Restrictions.eq("idetntityNo", idetntityNo));
         return (Users) criteria.uniqueResult();
     }
-    public List<UserLeave> getUserLeave(Long userId) {
+    public List<HrLeave> getHrLeave(Long userId) {
         String hql = "Select new map(";
-        hql += " ul.users.userId as userId," +
+        hql += " ul.hrLeaveId as hrLeaveId," +
+                " ul.users.userId as userId," +
                 " ul.recordTypeId as recordTypeId," +
                 " (select lud.name from LookUpDetail lud where lud.value = ul.recordTypeId and lud.lookUp.lookUpId = 20) as recordTypeName," +
                 " case when ul.recordTypeId = 1 then (select lud.name from LookUpDetail lud where lud.value = ul.typeId and lud.lookUp.lookUpId = 21)" +
@@ -96,14 +98,37 @@ public class HrDao extends GenericDao {
                 " to_char(ul.endDate,'dd/mm/yyyy') as endDate," +
                 " to_char(ul.startWorkDate,'dd/mm/yyyy') as leaveStartWorkDate," +
                 " ul.time as time," +
-                " ul.leaveYear as leaveYear," +
+                " (select lud.name from LookUpDetail lud where lud.value = ul.leaveYear and lud.lookUp.lookUpId = 23) as leaveYear," +
+                " ul.time - (select sum(hl.day) from HrLeaveDetail hl where hl.users.userId = ul.users.userId and hl.year = ul.time ) as leaveRemain," +
                 " ul.status as leaveStatus" +
                 ")";
-        hql += " From UserLeave ul " +
+        hql += " From HrLeave ul " +
                 " where 1=1";
 
         if(userId!=null){
             hql += " and ul.users.userId = :userId";
+        }
+        Query q = getCurrentSession().createQuery(hql);
+        if(userId!=null){
+            q.setLong("userId",userId);
+        }
+        return q.list();
+    }
+
+    public List<HrLeaveDetail> getHrLeaveDetail(Long userId) {
+        String hql = "Select new map(";
+        hql += " hd.hrLeaveDetailId as hrLeaveDetailId," +
+                " hd.users.userId as leaveDetailUserId," +
+                " (select lud.name from LookUpDetail lud where lud.value = hd.year and lud.lookUp.lookUpId = 23) as leaveDetailYear," +
+                " hd.year as leaveDetailYearId," +
+                " hd.day - (select sum(hl.time) from HrLeave hl where hl.users.userId = hd.users.userId) as leaveDetailRemain," +
+                " hd.day as leaveDetailDay" +
+                ")";
+        hql += " From HrLeaveDetail hd " +
+                " where 1=1";
+
+        if(userId!=null){
+            hql += " and hd.users.userId = :userId";
         }
         Query q = getCurrentSession().createQuery(hql);
         if(userId!=null){

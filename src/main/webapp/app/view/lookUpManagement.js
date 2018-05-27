@@ -184,6 +184,8 @@ Ext.define('byzCorp.view.lookUpManagement', {
                         },
                         {
                             xtype: 'combobox',
+                            extraParam: 1,
+                            urlParam: 1,
                             id: 'status',
                             fieldLabel: 'Statü',
                             allowBlank: false,
