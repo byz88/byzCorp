@@ -1,0 +1,64 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "asynchronousLoad": false,
+        "designer|userClassName": "ludRelationShip",
+        "model": "lookUpDetails",
+        "storeId": "ludRelationShip"
+    },
+    "configAlternates": {
+        "designer|userClassName": "string",
+        "model": "model",
+        "storeId": "string",
+        "asynchronousLoad": "boolean"
+    },
+    "name": "ludWorkType4",
+    "designerId": "6a63863b-22bb-419f-aa2c-55437142662e",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "ludRelationShip",
+                "url": "/byzCorp/lookUp/getLookUpDetails?lookUpId=16"
+            },
+            "configAlternates": {
+                "designer|displayName": "string",
+                "url": "string"
+            },
+            "name": "MyAjaxProxy",
+            "designerId": "96b15c48-437d-405d-b336-236e09bf4f65",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "ludRelationShip",
+                        "keepRawData": false,
+                        "rootProperty": "data"
+                    },
+                    "configAlternates": {
+                        "designer|displayName": "string",
+                        "rootProperty": "string",
+                        "keepRawData": "boolean"
+                    },
+                    "name": "MyJsonReader",
+                    "designerId": "101c7a35-81c3-49ac-8914-4870677b97db"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,65 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "asynchronousLoad": false,
+        "designer|userClassName": "lookUpDetails",
+        "model": "lookUpDetails",
+        "storeId": "lookUpDetails"
+    },
+    "configAlternates": {
+        "designer|userClassName": "string",
+        "model": "model",
+        "storeId": "string",
+        "asynchronousLoad": "boolean"
+    },
+    "name": "lookUps1",
+    "designerId": "ab9a78c1-ca34-4ae9-ba96-1ba63164cd0a",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "lookUpDetails",
+                "url": "/byzCorp/lookUp/getLookUpDetails"
+            },
+            "configAlternates": {
+                "designer|displayName": "string",
+                "url": "string",
+                "baseParams": "object"
+            },
+            "name": "MyAjaxProxy",
+            "designerId": "b73ac5ce-7aa9-4e4c-9a26-3e5f2138fb8f",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "lookUpDetails",
+                        "keepRawData": false,
+                        "rootProperty": "data"
+                    },
+                    "configAlternates": {
+                        "designer|displayName": "string",
+                        "rootProperty": "string",
+                        "keepRawData": "boolean"
+                    },
+                    "name": "MyJsonReader",
+                    "designerId": "6d763cce-7a9d-42b9-b3a5-007fac4000a1"
+                }
+            ]
+        }
+    ]
+}

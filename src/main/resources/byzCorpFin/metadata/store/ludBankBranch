@@ -1,0 +1,64 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "asynchronousLoad": false,
+        "designer|userClassName": "ludBankBranch",
+        "model": "lookUpDetails",
+        "storeId": "ludBankBranch"
+    },
+    "configAlternates": {
+        "designer|userClassName": "string",
+        "model": "model",
+        "storeId": "string",
+        "asynchronousLoad": "boolean"
+    },
+    "name": "ludWorkType8",
+    "designerId": "c464f883-0ee3-4973-8eba-c6c72caff8e5",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "ludBankBranch",
+                "url": "/byzCorp/lookUp/getLookUpDetails?lookUpId=19"
+            },
+            "configAlternates": {
+                "designer|displayName": "string",
+                "url": "string"
+            },
+            "name": "MyAjaxProxy",
+            "designerId": "fe8b8616-3c5a-4d8a-8c6c-93747a722581",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "ludBankBranch",
+                        "keepRawData": false,
+                        "rootProperty": "data"
+                    },
+                    "configAlternates": {
+                        "designer|displayName": "string",
+                        "rootProperty": "string",
+                        "keepRawData": "boolean"
+                    },
+                    "name": "MyJsonReader",
+                    "designerId": "34b3ea79-41d0-48f9-99a8-ca59bf19ba6c"
+                }
+            ]
+        }
+    ]
+}

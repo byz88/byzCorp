@@ -1,0 +1,64 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "asynchronousLoad": false,
+        "designer|userClassName": "ludBank",
+        "model": "lookUpDetails",
+        "storeId": "ludBank"
+    },
+    "configAlternates": {
+        "designer|userClassName": "string",
+        "model": "model",
+        "storeId": "string",
+        "asynchronousLoad": "boolean"
+    },
+    "name": "ludWorkType7",
+    "designerId": "23bdebcb-19a9-4fa3-8ab6-fe71c575bfb1",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "ludBank",
+                "url": "/byzCorp/lookUp/getLookUpDetails?lookUpId=18"
+            },
+            "configAlternates": {
+                "designer|displayName": "string",
+                "url": "string"
+            },
+            "name": "MyAjaxProxy",
+            "designerId": "77bcf6c5-5b62-449f-ad82-81eeea0d0239",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "ludBank",
+                        "keepRawData": false,
+                        "rootProperty": "data"
+                    },
+                    "configAlternates": {
+                        "designer|displayName": "string",
+                        "rootProperty": "string",
+                        "keepRawData": "boolean"
+                    },
+                    "name": "MyJsonReader",
+                    "designerId": "86ed6e04-578b-465c-8adb-c0d666102200"
+                }
+            ]
+        }
+    ]
+}

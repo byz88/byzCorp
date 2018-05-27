@@ -1,0 +1,64 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "asynchronousLoad": false,
+        "designer|userClassName": "ludReportType",
+        "model": "lookUpDetails",
+        "storeId": "ludReportType"
+    },
+    "configAlternates": {
+        "designer|userClassName": "string",
+        "model": "model",
+        "storeId": "string",
+        "asynchronousLoad": "boolean"
+    },
+    "name": "ludLeaveType1",
+    "designerId": "57523617-b8d0-4951-9060-70ef9f0cad0e",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "ludReportType",
+                "url": "/byzCorp/lookUp/getLookUpDetails?lookUpId=22"
+            },
+            "configAlternates": {
+                "designer|displayName": "string",
+                "url": "string"
+            },
+            "name": "MyAjaxProxy",
+            "designerId": "abcbcb07-6fa9-4e09-b2d3-53946261a1a8",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "ludReportType",
+                        "keepRawData": false,
+                        "rootProperty": "data"
+                    },
+                    "configAlternates": {
+                        "designer|displayName": "string",
+                        "rootProperty": "string",
+                        "keepRawData": "boolean"
+                    },
+                    "name": "MyJsonReader",
+                    "designerId": "4e55ace5-b327-470e-a66e-e5168da9a32a"
+                }
+            ]
+        }
+    ]
+}

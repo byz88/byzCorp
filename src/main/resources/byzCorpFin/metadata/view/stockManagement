@@ -1,0 +1,26 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "stockManagement",
+        "designer|userClassName": "stockManagement",
+        "height": 533,
+        "title": "Stock Management",
+        "width": 925
+    },
+    "configAlternates": {
+        "designer|userAlias": "string",
+        "designer|userClassName": "string",
+        "height": "auto",
+        "title": "string",
+        "width": "auto"
+    },
+    "name": "MyPanel4",
+    "designerId": "e0d72e3d-cd06-465b-938b-707925e3fa3f",
+    "viewControllerInstanceId": "4be8e83f-9a96-4ee1-bfeb-1695c58f93bf",
+    "viewModelInstanceId": "a49cf44a-84c8-42a0-9918-197cecd2ac49"
+}

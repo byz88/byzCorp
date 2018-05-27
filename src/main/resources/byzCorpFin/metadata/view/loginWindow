@@ -1,0 +1,200 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyStyle": [
+            "background-image:url(resources/images/loginBackGround.jpg) !important; "
+        ],
+        "border": false,
+        "closable": false,
+        "container|align": "center",
+        "container|pack": "center",
+        "defaultFocus": "txtUserName",
+        "designer|uiInterfaceName": "default",
+        "designer|userAlias": "loginWindow",
+        "designer|userClassName": "loginWindow",
+        "frameHeader": false,
+        "header": false,
+        "id": "loginWindow",
+        "layout": "vbox",
+        "maximized": true,
+        "resizable": false,
+        "width": 917
+    },
+    "configAlternates": {
+        "bodyStyle": "object",
+        "border": "boolean",
+        "closable": "boolean",
+        "container|align": "string",
+        "container|pack": "string",
+        "defaultFocus": "string",
+        "designer|uiInterfaceName": "string",
+        "designer|userAlias": "string",
+        "designer|userClassName": "string",
+        "frameHeader": "boolean",
+        "header": "boolean",
+        "id": "string",
+        "layout": "string",
+        "maximized": "boolean",
+        "resizable": "boolean",
+        "width": "auto"
+    },
+    "name": "MyWindow",
+    "designerId": "3a581f1c-5003-434f-ad20-6f7188dfb346",
+    "viewControllerInstanceId": "b3353998-1a98-45af-8d79-0f2e78d3affc",
+    "viewModelInstanceId": "e911ee0d-e43f-4f17-a062-21d7bab67182",
+    "cn": [
+        {
+            "type": "Ext.container.Container",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "container|align": "stretch",
+                "container|pack": "center",
+                "dock": null,
+                "layout": "vbox",
+                "layout|flex": 1,
+                "width": 313
+            },
+            "configAlternates": {
+                "container|align": "string",
+                "container|pack": "string",
+                "dock": "string",
+                "layout": "string",
+                "layout|flex": "number",
+                "width": "auto"
+            },
+            "name": "MyContainer1",
+            "designerId": "792122d6-53b8-4037-845a-365b37677f93",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "disabled": true,
+                        "dock": "top",
+                        "iconAlign": "top",
+                        "iconCls": "x-fa fa-home",
+                        "margin": "0 0 150 0",
+                        "text": "<b><font size=\"6\" color=\"white\"><br>byzCorp Finance </b></font></br>"
+                    },
+                    "configAlternates": {
+                        "disabled": "boolean",
+                        "dock": "string",
+                        "iconAlign": "string",
+                        "iconCls": "string",
+                        "margin": "auto",
+                        "text": "string"
+                    },
+                    "name": "MyButton16",
+                    "designerId": "ee6355be-1dad-47d2-adaf-706a4c85c0f6"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dock": "top",
+                        "emptyText": "Kullanıcı Adı.",
+                        "id": "txtUserName",
+                        "margin": "2 0 0 0"
+                    },
+                    "configAlternates": {
+                        "dock": "string",
+                        "emptyText": "string",
+                        "margin": "auto",
+                        "id": "string"
+                    },
+                    "name": "MyTextField1",
+                    "designerId": "226aa549-ae3d-48d3-99a6-d4acf2bd83cd"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dock": "top",
+                        "emptyText": "Şifre....",
+                        "id": "txtPassword",
+                        "inputType": "password",
+                        "margin": "2 0 0 0"
+                    },
+                    "configAlternates": {
+                        "dock": "string",
+                        "emptyText": "string",
+                        "inputType": "string",
+                        "margin": "auto",
+                        "id": "string"
+                    },
+                    "name": "MyTextField",
+                    "designerId": "413decc3-6ecc-4840-a3a5-1e55310b281d"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dock": "top",
+                        "iconCls": "fa fa-sign-in",
+                        "id": "btnLogin",
+                        "margin": "50 0 0 0",
+                        "text": "Giriş"
+                    },
+                    "configAlternates": {
+                        "dock": "string",
+                        "iconCls": "string",
+                        "id": "string",
+                        "margin": "auto",
+                        "text": "string"
+                    },
+                    "name": "MyButton14",
+                    "designerId": "e9f6e3a8-470a-4c46-8d37-23a9df066dee"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dock": "top",
+                        "iconCls": "fa fa-question-circle",
+                        "margin": "2 0 0 0",
+                        "text": "Şifremi Unuttum",
+                        "width": 150
+                    },
+                    "configAlternates": {
+                        "text": "string",
+                        "dock": "string",
+                        "iconCls": "string",
+                        "margin": "auto",
+                        "width": "auto"
+                    },
+                    "name": "MyButton15",
+                    "designerId": "a6ccb28d-1094-4136-befa-f99edfc97c21"
+                }
+            ]
+        }
+    ]
+}

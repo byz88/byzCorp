@@ -1,0 +1,102 @@
+.lightGreenRow .x-grid-cell
+    {
+        background-color:#f2ffe6;
+    }
+.greenRow .x-grid-cell
+    {
+        background-color:#ccff99;
+    }
+.lightRedRow .x-grid-cell
+    {
+        background-color:#ffe6e6;
+    }
+.redRow .x-grid-cell
+    {
+        background-color:#ff9999;
+    }
+.lightBlueRow .x-grid-cell
+    {
+        background-color:#e6f7ff;
+    }
+.blueRow .x-grid-cell
+    {
+        background-color:#99ddff;
+    }
+.lightYellowRow .x-grid-cell
+    {
+        background-color:#ffffe6;
+    }
+.yellowRow .x-grid-cell
+    {
+        background-color:#ffff99;
+    }
+.lightOrangewRow .x-grid-cell
+    {
+        background-color:#fff2e6;
+    }
+.orangewRow .x-grid-cell
+    {
+        background-color:#ffcc99;
+    }
+.showSuccessMessage .x-window-header-title-default {
+    color: #000;
+}
+
+.showSuccessMessage .x-window-header-default-top {
+    background-color: #ccff99;
+}
+.showSuccessMessage .x-window-header-default {
+    background-color: #ccff99;
+    border-color: #ccff99;
+}
+
+.showSuccessMessage .x-window-default {
+    border-color: #ccff99;
+}
+.showSuccessMessage .x-window-body {
+    border-color: #ccff99;
+    background-color: #ccff99;
+}
+
+
+
+.showErrorMessage .x-window-header-title-default {
+    color: #000;
+}
+
+.showErrorMessage .x-window-header-default-top {
+    background-color: #ffb099;
+}
+.showErrorMessage .x-window-header-default {
+    background-color: #ffb099;
+    border-color: #ffb099;
+}
+
+.showErrorMessage .x-window-default {
+    border-color: #ffb099;
+}
+.showErrorMessage .x-window-body {
+    border-color: #ffb099;
+    background-color: #ffb099;
+}
+
+
+.showWarningMessage .x-window-header-title-default {
+    color: #000;
+}
+
+.showWarningMessage .x-window-header-default-top {
+    background-color: #fffd99;
+}
+.showWarningMessage .x-window-header-default {
+    background-color: #fffd99;
+    border-color: #fffd99;
+}
+
+.showWarningMessage .x-window-default {
+    border-color: #fffd99;
+}
+.showWarningMessage .x-window-body {
+    border-color: #fffd99;
+    background-color: #fffd99;
+}

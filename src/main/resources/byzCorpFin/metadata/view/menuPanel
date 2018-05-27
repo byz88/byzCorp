@@ -1,0 +1,182 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "menuPanel",
+        "designer|userClassName": "menuPanel",
+        "height": 529,
+        "iconCls": "fa fa-bars",
+        "layout": "form",
+        "title": "Menü",
+        "width": 208
+    },
+    "configAlternates": {
+        "designer|userAlias": "string",
+        "designer|userClassName": "string",
+        "height": "auto",
+        "iconCls": "string",
+        "layout": "string",
+        "title": "string",
+        "width": "auto"
+    },
+    "name": "MyPanel3",
+    "designerId": "bc7003c0-5ee0-4b9a-95e1-4761c7ed23e2",
+    "viewControllerInstanceId": "88b54208-f5d3-460b-b8d8-bb92c897121d",
+    "viewModelInstanceId": "3326a51a-02a9-4c6a-92ee-02dca02c4b07",
+    "cn": [
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "menuBtnfinanceManagement",
+                "dock": "top",
+                "iconAlign": "top",
+                "iconCls": "fa fa-money",
+                "itemId": "menuBtnFinanceManagement",
+                "margin": "2 0 0 0",
+                "text": "Finans Yönetimi",
+                "textAlign": "left"
+            },
+            "configAlternates": {
+                "designer|displayName": "string",
+                "dock": "string",
+                "iconAlign": "string",
+                "iconCls": "string",
+                "itemId": "string",
+                "margin": "auto",
+                "text": "string",
+                "textAlign": "string"
+            },
+            "name": "MyButton",
+            "designerId": "87696fb3-c0a7-4c45-aa1a-3137bae30a89"
+        },
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "menuBtnStockManagement",
+                "dock": "top",
+                "iconAlign": "top",
+                "iconCls": "fa fa-cubes",
+                "itemId": "menuBtnStockManagement",
+                "margin": "2 0 0 0",
+                "text": "Stok Yönetimi",
+                "textAlign": "left"
+            },
+            "configAlternates": {
+                "dock": "string",
+                "iconAlign": "string",
+                "iconCls": "string",
+                "margin": "auto",
+                "text": "string",
+                "textAlign": "string",
+                "designer|displayName": "string",
+                "itemId": "string"
+            },
+            "name": "MyButton6",
+            "designerId": "ef739a45-613a-44c7-a00c-0860f8b5a43b"
+        },
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "menuBtnHrManagement",
+                "dock": "top",
+                "iconAlign": "top",
+                "iconCls": "fa fa-users",
+                "itemId": "menuBtnHrManagement",
+                "margin": "2 0 0 0",
+                "text": "İnsan Kaynakları Yönetimi",
+                "textAlign": "left"
+            },
+            "configAlternates": {
+                "dock": "string",
+                "iconAlign": "string",
+                "iconCls": "string",
+                "margin": "auto",
+                "text": "string",
+                "textAlign": "string",
+                "designer|displayName": "string",
+                "itemId": "string"
+            },
+            "name": "MyButton7",
+            "designerId": "f0d15add-4f86-4ab9-a6c7-8e6b42e1d902"
+        },
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "menuBtnOtelManagement",
+                "dock": "top",
+                "iconAlign": "top",
+                "iconCls": "fa fa-h-square",
+                "itemId": "menuBtnOtelManagement",
+                "margin": "2 0 0 0",
+                "text": "Otel Yönetimi",
+                "textAlign": "left"
+            },
+            "configAlternates": {
+                "dock": "string",
+                "iconAlign": "string",
+                "iconCls": "string",
+                "margin": "auto",
+                "text": "string",
+                "textAlign": "string",
+                "designer|displayName": "string",
+                "itemId": "string"
+            },
+            "name": "MyButton9",
+            "designerId": "2b6b62d9-4875-4baf-8c9c-66c3160630db"
+        },
+        {
+            "type": "Ext.button.Button",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|displayName": "menuBtnLookUpManagement",
+                "dock": "top",
+                "iconAlign": "top",
+                "iconCls": "fa fa-puzzle-piece",
+                "itemId": "menuBtnLookUpManagement",
+                "margin": "2 0 0 0",
+                "text": "Tanımlama Yönetimi",
+                "textAlign": "left"
+            },
+            "configAlternates": {
+                "dock": "string",
+                "iconAlign": "string",
+                "iconCls": "string",
+                "margin": "auto",
+                "text": "string",
+                "textAlign": "string",
+                "designer|displayName": "string",
+                "itemId": "string"
+            },
+            "name": "MyButton8",
+            "designerId": "058dfd9c-6ded-4321-8e54-1010f7261984"
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "webBuild": {
+        "environment": "testing",
+        "clean": "on",
+        "publishPath": "C:\\Users\\bayram.beyaz\\IdeaProjects\\byzCorp\\src\\main\\webapp"
+    }
+}

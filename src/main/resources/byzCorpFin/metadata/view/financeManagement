@@ -1,0 +1,26 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "financeManagement",
+        "designer|userClassName": "financeManagement",
+        "height": 535,
+        "title": "Finance Management",
+        "width": 919
+    },
+    "configAlternates": {
+        "designer|userAlias": "string",
+        "designer|userClassName": "string",
+        "height": "auto",
+        "title": "string",
+        "width": "auto"
+    },
+    "name": "MyPanel4",
+    "designerId": "bd11c4ec-ac5b-4a5b-816c-3661e204203c",
+    "viewControllerInstanceId": "493d16d0-5b18-4be6-8be1-7b12768639c9",
+    "viewModelInstanceId": "8479fb76-1743-4c10-a0ee-d87aded7287e"
+}

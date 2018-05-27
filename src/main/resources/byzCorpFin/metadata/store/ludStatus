@@ -1,0 +1,75 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "asynchronousLoad": false,
+        "designer|userClassName": "ludStatus",
+        "model": "lookUpDetails",
+        "storeId": "ludStatus"
+    },
+    "configAlternates": {
+        "designer|userClassName": "string",
+        "model": "model",
+        "storeId": "string",
+        "asynchronousLoad": "boolean"
+    },
+    "name": "lookUpDetails1",
+    "designerId": "d6c91325-7c62-4aba-93c1-a1e9a4258f7f",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "baseParams": [
+                    "{lookUpId:me.urlSuffix}"
+                ],
+                "designer|displayName": "ludStatus",
+                "url": "/byzCorp/lookUp/getLookUpDetails?lookUpId=1"
+            },
+            "configAlternates": {
+                "designer|displayName": "string",
+                "url": "string",
+                "baseParams": "object"
+            },
+            "name": "MyAjaxProxy",
+            "designerId": "5ae5c3db-fc1b-4181-94a5-fbce5110cd3a",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "baseParams",
+                    "type": "string"
+                }
+            ],
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "ludStatus",
+                        "keepRawData": false,
+                        "rootProperty": "data"
+                    },
+                    "configAlternates": {
+                        "designer|displayName": "string",
+                        "rootProperty": "string",
+                        "keepRawData": "boolean"
+                    },
+                    "name": "MyJsonReader",
+                    "designerId": "2c0a13fa-c34e-49d5-aa75-b203f2815b7a"
+                }
+            ]
+        }
+    ]
+}

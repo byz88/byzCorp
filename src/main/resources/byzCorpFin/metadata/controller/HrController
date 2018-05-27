@@ -1,0 +1,264 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "HrController",
+        "views": [
+            "hrSaveOrUpdate"
+        ]
+    },
+    "configAlternates": {
+        "designer|userClassName": "string",
+        "views": "typedarray",
+        "designer|extend": "string"
+    },
+    "name": "MyController",
+    "designerId": "154cc50e-bef6-4a59-a304-9406bd92ffd0",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#btnHrSaveOrUpdateWindow",
+                "designer|params": [
+                    "button",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.button.Button",
+                "fn": "onBtnHrSaveOrUpdateWindowClick",
+                "implHandler": [
+                    "var winHrSaveOrUpdate = Ext.create('byzCorp.view.hrSaveOrUpdate',{",
+                    "    title: button.text,",
+                    "    xtype:'panel',",
+                    "    iconCls:button.iconCls,",
+                    "    closable: true,",
+                    "});",
+                    "var scope = this;",
+                    "var hrGridSelected = Ext.getCmp(\"hrGrid\").getSelectionModel().getSelection();",
+                    "if(hrGridSelected.length==0){",
+                    "    winHrSaveOrUpdate.show();",
+                    "}else{",
+                    "    winHrSaveOrUpdate.show();",
+                    "    Ext.getCmp('employeeSubInfoWest').getForm().setValues(hrGridSelected[0].data);",
+                    "    Ext.getCmp('employeeSubInfoEast').getForm().setValues(hrGridSelected[0].data);",
+                    "    Ext.getCmp('employeeSubInfoCenter').getForm().setValues(hrGridSelected[0].data);",
+                    "    Ext.getCmp('employeeInfoWest').getForm().setValues(hrGridSelected[0].data);",
+                    "    Ext.getCmp('employeeInfoEast').getForm().setValues(hrGridSelected[0].data);",
+                    "    Ext.getCmp('employeeInfoCenter').getForm().setValues(hrGridSelected[0].data);",
+                    "   }"
+                ],
+                "name": "click"
+            },
+            "configAlternates": {
+                "designer|controlQuery": "string",
+                "designer|params": "typedarray",
+                "designer|targetType": "view",
+                "fn": "string",
+                "implHandler": "code",
+                "name": "string"
+            },
+            "name": "onBtnHrSaveOrUpdateWindowClick",
+            "designerId": "d86b5a96-097f-482a-991b-0bb23532eb4f"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#employeeTabPanel",
+                "designer|params": [
+                    "tabPanel",
+                    "newCard",
+                    "oldCard",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.tab.Panel",
+                "fn": "onEmployeeTabPanelTabChange",
+                "implHandler": [
+                    "debugger;",
+                    "var userId = Ext.getCmp('hrGrid').getSelectionModel().getSelected().items[0].data.userId;",
+                    "if((tabPanel.getActiveTab().getId()!='employeeInfo')){",
+                    "   Ext.getCmp(tabPanel.getActiveTab().getId()+'Grid').getStore().load({",
+                    "    params:{",
+                    "        userId : userId",
+                    "    }",
+                    "});",
+                    "}"
+                ],
+                "name": "tabchange"
+            },
+            "configAlternates": {
+                "designer|controlQuery": "string",
+                "designer|params": "typedarray",
+                "designer|targetType": "view",
+                "fn": "string",
+                "implHandler": "code",
+                "name": "string"
+            },
+            "name": "onEmployeeTabPanelTabChange",
+            "designerId": "4c044a75-89fa-4055-97b4-b08a599d71e2"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#btnHrSaveOrUpdate",
+                "designer|params": [
+                    "button",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.button.Button",
+                "fn": "onBtnHrSaveOrUpdateClick",
+                "implHandler": [
+                    "var scope = this;",
+                    "var activeTabId = Ext.getCmp('employeeTabPanel').getActiveTab().id;",
+                    "if(activeTabId=='employeeInfo'){",
+                    "    Ext.Ajax.request({",
+                    "    url:'/byzCorp/hr/saveOrUpdateEmployee',",
+                    "    params : {",
+                    "        subInfoWest : Ext.encode(Ext.getCmp('employeeSubInfoWest').getForm().getValues()),",
+                    "        subInfoEast : Ext.encode(Ext.getCmp('employeeSubInfoEast').getForm().getValues()),",
+                    "        subInfoCenter :Ext.encode(Ext.getCmp('employeeSubInfoCenter').getForm().getValues()),",
+                    "        infoWest : Ext.encode(Ext.getCmp('employeeInfoWest').getForm().getValues()),",
+                    "        infoEast : Ext.encode(Ext.getCmp('employeeInfoEast').getForm().getValues()),",
+                    "        infoCenter : Ext.encode(Ext.getCmp('employeeInfoCenter').getForm().getValues())",
+                    "    },",
+                    "    success : function(response){",
+                    "        var jsonData = Ext.util.JSON.decode(response.responseText.trim());",
+                    "        if(jsonData.success){debugger;",
+                    "        scope.showSuccessMessage();",
+                    "        Ext.getCmp(\"managerId\").focus();",
+                    "        Ext.getCmp('hrGrid').getStore().load();",
+                    "        }else{",
+                    "            scope.showErrorMessage(jsonData.message);",
+                    "            Ext.getCmp(\"managerId\").focus();",
+                    "        }",
+                    "    },",
+                    "    failure: function (response) {",
+                    "        var jsonData = Ext.util.JSON.decode(response.responseText.trim());",
+                    "        scope.showErrorMessage(jsonData.message);",
+                    "        Ext.getCmp(\"managerId\").focus();",
+                    "    }",
+                    "});",
+                    "}",
+                    ""
+                ],
+                "name": "click"
+            },
+            "configAlternates": {
+                "designer|controlQuery": "string",
+                "designer|params": "typedarray",
+                "designer|targetType": "view",
+                "fn": "string",
+                "implHandler": "code",
+                "name": "string"
+            },
+            "name": "onBtnHrSaveOrUpdateClick",
+            "designerId": "546114f7-135b-40d2-bcc9-3e180dd6955b"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#employeeLeaveGrid",
+                "designer|params": [
+                    "tableview",
+                    "record",
+                    "element",
+                    "rowIndex",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.grid.Panel",
+                "fn": "onEmployeeLeaveGridRowClick",
+                "implHandler": [
+                    "debugger;",
+                    "if(record.data.recordTypeId==1){",
+                    "    Ext.getCmp(\"reportTypeId\").setVisible(false);",
+                    "    Ext.getCmp(\"leaveTypeId\").setVisible(true);",
+                    "    Ext.getCmp(\"leaveYear\").setVisible(true);",
+                    "}else{",
+                    "    Ext.getCmp(\"reportTypeId\").setVisible(true);",
+                    "    Ext.getCmp(\"leaveTypeId\").setVisible(false);",
+                    "    Ext.getCmp(\"leaveYear\").setVisible(false);",
+                    "}",
+                    "Ext.getCmp(\"leaveSaveOrUpdateForm\").getForm().setValues(record.data);"
+                ],
+                "name": "rowclick"
+            },
+            "configAlternates": {
+                "designer|controlQuery": "string",
+                "designer|params": "typedarray",
+                "designer|targetType": "view",
+                "fn": "string",
+                "implHandler": "code",
+                "name": "string"
+            },
+            "name": "onEmployeeLeaveGridRowClick",
+            "designerId": "ae339121-e6dc-41d7-a427-b0afb1503c7c"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#recordTypeId",
+                "designer|params": [
+                    "field",
+                    "newValue",
+                    "oldValue",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.form.field.ComboBox",
+                "fn": "onRecordTypeIdChange",
+                "implHandler": [
+                    "debugger;",
+                    "if(newValue==1){",
+                    "    Ext.getCmp(\"leaveTypeId\").setVisible(true);",
+                    "    Ext.getCmp(\"leaveYear\").setVisible(true);",
+                    "    Ext.getCmp(\"reportTypeId\").setVisible(false);",
+                    "}else{",
+                    "    Ext.getCmp(\"leaveTypeId\").setVisible(false);",
+                    "    Ext.getCmp(\"leaveYear\").setVisible(false);",
+                    "    Ext.getCmp(\"reportTypeId\").setVisible(true);",
+                    "}"
+                ],
+                "name": "change"
+            },
+            "configAlternates": {
+                "designer|controlQuery": "string",
+                "designer|params": "typedarray",
+                "designer|targetType": "view",
+                "fn": "string",
+                "implHandler": "code",
+                "name": "string"
+            },
+            "name": "onRecordTypeIdChange",
+            "designerId": "04672f90-6644-476e-a066-dc4816f9a538"
+        }
+    ]
+}

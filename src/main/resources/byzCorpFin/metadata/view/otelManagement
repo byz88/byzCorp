@@ -1,0 +1,26 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "otelManagement",
+        "designer|userClassName": "otelManagement",
+        "height": 516,
+        "title": "Otel Management",
+        "width": 898
+    },
+    "configAlternates": {
+        "designer|userAlias": "string",
+        "designer|userClassName": "string",
+        "height": "auto",
+        "title": "string",
+        "width": "auto"
+    },
+    "name": "MyPanel4",
+    "designerId": "d836f119-65df-4d03-b335-1ff987e6ad0f",
+    "viewControllerInstanceId": "8b425aeb-8fc3-4901-88da-cf8b83000bb7",
+    "viewModelInstanceId": "0a806b60-b7dc-4378-ab39-b99f61d135e8"
+}

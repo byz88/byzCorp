@@ -1,0 +1,313 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "LookUpController",
+        "id": "LookUpController"
+    },
+    "configAlternates": {
+        "designer|extend": "string",
+        "designer|userClassName": "string",
+        "id": "string"
+    },
+    "name": "MyController",
+    "designerId": "aadccb05-19a5-4bb2-9069-709d76e2eb1c",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#searchLookUpGrid",
+                "designer|params": [
+                    "textfield",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.form.field.Text",
+                "fn": "onSearchLookUpGridKeyup",
+                "implHandler": [
+                    "var query = Ext.getCmp(\"searchLookUpGrid\").getValue();",
+                    "var lookUpGrid = Ext.getCmp(\"lookUpGrid\");",
+                    "lookUpGrid.getStore().load({",
+                    "    params:{",
+                    "        query : query",
+                    "    }",
+                    "});"
+                ],
+                "name": "keyup"
+            },
+            "configAlternates": {
+                "designer|controlQuery": "string",
+                "designer|params": "typedarray",
+                "designer|targetType": "view",
+                "fn": "string",
+                "implHandler": "code",
+                "name": "string"
+            },
+            "name": "onSearchLookUpGridKeyup",
+            "designerId": "564ee537-f535-4eba-80b4-f80246841feb"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#bntLookUpDetailSaveOrUpdate",
+                "designer|params": [
+                    "button",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.button.Button",
+                "fn": "onBntLookUpDetailSaveOrUpdateClick",
+                "implHandler": [
+                    "var scope = this;",
+                    "var lookUpSelected = Ext.getCmp(\"lookUpGrid\").getSelectionModel().getSelection();",
+                    "if(lookUpSelected.length==0){",
+                    "    scope.showWarningMessage(\"Tanım listesinden kayıt seçiniz.\");",
+                    "    return;",
+                    "}",
+                    "var lookUpDetailGridAdd = Ext.getCmp(\"lookUpDetailGridAdd\");",
+                    "var lookUpId = Ext.encode(lookUpSelected[0].data.lookUpId);",
+                    "Ext.Ajax.request({",
+                    "    url:'/byzCorp/lookUp/saveOrUpdateLookUpDetail',",
+                    "    params : {",
+                    "        data : Ext.encode(lookUpDetailGridAdd.getForm().getValues()),",
+                    "        lookUpId : lookUpId",
+                    "    },",
+                    "    success : function(response){",
+                    "        var jsonData = Ext.util.JSON.decode(response.responseText.trim());",
+                    "        if(jsonData.success){",
+                    "            var grid = Ext.getCmp(\"lookUpDetailGrid\");",
+                    "            grid.getStore().load({",
+                    "                params:{",
+                    "                    lookUpId : lookUpId",
+                    "                }",
+                    "            });",
+                    "            lookUpDetailGridAdd.getForm().reset();",
+                    "            scope.showSuccessMessage();",
+                    "            Ext.getCmp(\"name\").focus();",
+                    "        }else{",
+                    "         scope.showErrorMessage(jsonData.message);",
+                    "         Ext.getCmp(\"name\").focus();",
+                    "        }",
+                    "    },",
+                    "    failure: function (response) {",
+                    "        var jsonData = Ext.util.JSON.decode(response.responseText.trim());",
+                    "        scope.showErrorMessage(jsonData.message);",
+                    "        Ext.getCmp(\"name\").focus();",
+                    "    }",
+                    "});"
+                ],
+                "name": "click"
+            },
+            "configAlternates": {
+                "designer|controlQuery": "string",
+                "designer|params": "typedarray",
+                "designer|targetType": "view",
+                "fn": "string",
+                "implHandler": "code",
+                "name": "string"
+            },
+            "name": "onBntLookUpDetailSaveOrUpdateClick",
+            "designerId": "91e710d4-8eb5-49c3-a3f7-f7834a4468c7"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#btnLookUpDetailRemove",
+                "designer|params": [
+                    "button",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.button.Button",
+                "fn": "onBtnLookUpDetailRemoveClick",
+                "implHandler": [
+                    "var scope = this;",
+                    "var lookUpDetailSelected = Ext.getCmp(\"lookUpDetailGrid\").getSelectionModel().getSelection();",
+                    "var lookUpSelected = Ext.getCmp(\"lookUpGrid\").getSelectionModel().getSelection();",
+                    "if(lookUpDetailSelected.length==0){",
+                    "    this.showWarningMessage('Tanım listesinden kayıt seçiniz.');",
+                    "}",
+                    "var lookUpDetailGridAdd = Ext.getCmp(\"lookUpDetailGridAdd\");",
+                    "var lookUpId = Ext.encode(lookUpSelected[0].data.lookUpId);",
+                    "Ext.Ajax.request({",
+                    "    url:'/byzCorp/lookUp/removeLookUpDetail',",
+                    "    params : {",
+                    "        lookUpDetailId : Ext.encode(lookUpDetailSelected[0].data.lookUpDetailId)",
+                    "    },",
+                    "    success : function(response){",
+                    "        var jsonData = Ext.util.JSON.decode(response.responseText.trim());",
+                    "        if(jsonData.success){",
+                    "            var grid = Ext.getCmp(\"lookUpDetailGrid\");",
+                    "            grid.getStore().load({",
+                    "                params:{",
+                    "                    lookUpId : lookUpId",
+                    "                    }",
+                    "            });",
+                    "        lookUpDetailGridAdd.getForm().reset();",
+                    "        scope.showSuccessMessage();",
+                    "        Ext.getCmp(\"name\").focus();",
+                    "        }else{",
+                    "         scope.showErrorMessage(jsonData.message);",
+                    "         Ext.getCmp(\"name\").focus();",
+                    "        }",
+                    "    },",
+                    "    failure: function (response) {",
+                    "        var jsonData = Ext.util.JSON.decode(response.responseText.trim());",
+                    "        scope.showErrorMessage(jsonData.message);",
+                    "        Ext.getCmp(\"name\").focus();",
+                    "    }",
+                    "});"
+                ],
+                "name": "click"
+            },
+            "configAlternates": {
+                "designer|controlQuery": "string",
+                "designer|params": "typedarray",
+                "designer|targetType": "view",
+                "fn": "string",
+                "implHandler": "code",
+                "name": "string"
+            },
+            "name": "onBtnLookUpDetailRemoveClick",
+            "designerId": "efb074be-eeae-4b7e-bfaa-a11a4c403e01"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#lookUpGrid",
+                "designer|params": [
+                    "tableview",
+                    "record",
+                    "element",
+                    "rowIndex",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.grid.Panel",
+                "fn": "onLookUpGridRowClick",
+                "implHandler": [
+                    "var grid = Ext.getCmp(\"lookUpDetailGrid\");",
+                    "grid.getStore().load({",
+                    "    params:{",
+                    "        lookUpId: record.data.lookUpId",
+                    "    }",
+                    "});",
+                    "Ext.getCmp(\"lookUpDetailGridAdd\").getForm().reset();"
+                ],
+                "name": "rowclick"
+            },
+            "configAlternates": {
+                "designer|controlQuery": "string",
+                "designer|params": "typedarray",
+                "designer|targetType": "view",
+                "fn": "string",
+                "implHandler": "code",
+                "name": "string"
+            },
+            "name": "onLookUpGridRowClick",
+            "designerId": "87277449-f4fb-4c1f-b09c-73bea219d87e"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#lookUpDetailGrid",
+                "designer|params": [
+                    "tableview",
+                    "record",
+                    "element",
+                    "rowIndex",
+                    "e",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.grid.Panel",
+                "fn": "onLookUpDetailGridRowClick",
+                "implHandler": [
+                    "Ext.getCmp(\"lookUpDetailGridAdd\").getForm().setValues(record.data);"
+                ],
+                "name": "rowclick"
+            },
+            "configAlternates": {
+                "designer|controlQuery": "string",
+                "designer|params": "typedarray",
+                "designer|targetType": "view",
+                "fn": "string",
+                "implHandler": "code",
+                "name": "string"
+            },
+            "name": "onLookUpDetailGridRowClick",
+            "designerId": "abfa491c-979e-4c5e-9ef2-9b129b09dae3"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#provinceId",
+                "designer|params": [
+                    "field",
+                    "newValue",
+                    "oldValue",
+                    "eOpts"
+                ],
+                "designer|targetType": "Ext.form.field.ComboBox",
+                "fn": "onProvinceIdChange",
+                "implHandler": [
+                    "var scope = this;",
+                    "debugger;",
+                    "var countryId = Ext.getCmp(\"countryId\").getValue();",
+                    "if(countryId == \"\"){",
+                    "    scope.showWarningMessage(\"Öncelikle il seçimi yapmalısınız.\");",
+                    "    return;",
+                    "}",
+                    "field.getStore().addListener('beforeload', function(store, option){",
+                    "    option.params_counrtyId = countryId;",
+                    "});",
+                    ""
+                ],
+                "name": "change"
+            },
+            "configAlternates": {
+                "designer|controlQuery": "string",
+                "designer|params": "typedarray",
+                "designer|targetType": "view",
+                "fn": "string",
+                "implHandler": "code",
+                "name": "string"
+            },
+            "name": "onProvinceIdChange",
+            "designerId": "65a0da66-d395-406c-bcad-0435f71d24b9"
+        }
+    ]
+}
