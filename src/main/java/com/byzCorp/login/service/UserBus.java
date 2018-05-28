@@ -5,14 +5,13 @@ package com.byzCorp.login.service;
 
 import com.byzCorp.login.dao.UserDao;
 import com.byzCorp.login.model.*;
-import com.byzCorp.model.LookUp;
+import com.byzCorp.model.HrLeave;
 import com.byzCorp.util.MException;
 import com.byzCorp.util.Session;
 import com.byzCorp.util.Util;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,7 +61,7 @@ public class UserBus implements IUserBus {
 
 	public JSONObject getUserLeave(Long userId) {
 		JSONObject jsonObject = new JSONObject();
-		List<UserLeave> userLeaves = userDao.getUserLeave(userId);
+		List<HrLeave> userLeaves = userDao.getUserLeave(userId);
 		jsonObject.put("data", userLeaves);
 		jsonObject.put("success", true);
 		return jsonObject;

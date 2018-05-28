@@ -30,16 +30,16 @@ Ext.define('byzCorp.controller.BaseController', {
         }
     },
 
-    showSuccessMessage: function() {
+    showSuccessMessage: function(title) {
         debugger;
         var t = Ext.toast({
-            html: 'İşlemi Başarılı',
+            html: 'İşlem Başarılı',
             width: 300,
             //hideDuration: 1000,
             //autoCloseDelay: 1000,
             ariaRole: 'alert',
             header: true,
-            title: '000',
+            title: title,
             closable:true,
             animate: true,
             slideInAnimation: 'ease',

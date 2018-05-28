@@ -47,7 +47,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
     id: 'hrSaveOrUpdate',
     width: 1289,
     layout: 'border',
-    title: 'addEmployee',
+    title: 'addHr',
 
     items: [
         {
@@ -71,7 +71,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                         {
                             xtype: 'image',
                             height: 152,
-                            id: 'employeeImage',
+                            id: 'hrImage',
                             margin: 8,
                             style: '\'border: 0px;border-radius: 100px;',
                             width: 160,
@@ -80,7 +80,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                         {
                             xtype: 'filefield',
                             height: 30,
-                            id: 'addEmployeeImage',
+                            id: 'addHrImage',
                             margin: '0 0 3 0',
                             buttonText: 'Ekle..'
                         }
@@ -89,7 +89,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                 {
                     xtype: 'form',
                     region: 'west',
-                    id: 'employeeSubInfoWest',
+                    id: 'hrSubInfoWest',
                     width: 337,
                     bodyPadding: 3,
                     header: false,
@@ -163,7 +163,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                 {
                     xtype: 'form',
                     region: 'west',
-                    id: 'employeeSubInfoCenter',
+                    id: 'hrSubInfoCenter',
                     width: 403,
                     bodyPadding: 3,
                     header: false,
@@ -198,7 +198,9 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                             anchor: '100%',
                             id: 'roleId',
                             fieldLabel: 'Yetki Türü',
+                            autoLoadOnValue: true,
                             displayField: 'name',
+                            minChars: 0,
                             store: 'ludRole',
                             valueField: 'value'
                         }
@@ -207,7 +209,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                 {
                     xtype: 'form',
                     region: 'center',
-                    id: 'employeeSubInfoEast',
+                    id: 'hrSubInfoEast',
                     bodyPadding: 3,
                     header: false,
                     items: [
@@ -273,20 +275,20 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
         {
             xtype: 'tabpanel',
             region: 'center',
-            id: 'employeeTabPanel',
-            itemId: 'employeeTabPanel',
+            id: 'hrTabPanel',
+            itemId: 'hrTabPanel',
             activeTab: 0,
             items: [
                 {
                     xtype: 'panel',
-                    id: 'employeeInfo',
+                    id: 'hrInfo',
                     layout: 'border',
                     title: 'Kişisel Bilgiler',
                     items: [
                         {
                             xtype: 'form',
                             region: 'west',
-                            id: 'employeeInfoWest',
+                            id: 'hrInfoWest',
                             margin: '3 3 0 3',
                             width: 373,
                             bodyPadding: 3,
@@ -402,7 +404,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                         {
                             xtype: 'form',
                             region: 'west',
-                            id: 'employeeInfoCenter',
+                            id: 'hrInfoCenter',
                             margin: '3 3 0 0',
                             width: 417,
                             bodyPadding: 3,
@@ -497,7 +499,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                         {
                             xtype: 'form',
                             region: 'center',
-                            id: 'employeeInfoEast',
+                            id: 'hrInfoEast',
                             margin: '3 3 0 0',
                             bodyPadding: 3,
                             items: [
@@ -564,23 +566,23 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                 },
                 {
                     xtype: 'panel',
-                    id: 'employeeLeave',
+                    id: 'hrLeave',
                     layout: 'border',
                     title: 'İzin/Rapor Bilgileri',
                     items: [
                         {
                             xtype: 'gridpanel',
                             region: 'center',
-                            id: 'employeeLeaveGrid',
+                            id: 'hrLeaveGrid',
                             title: 'İzin/Rapor Listesi',
                             forceFit: true,
-                            store: 'userLeave',
+                            store: 'hrLeave',
                             columns: [
                                 {
                                     xtype: 'gridcolumn',
                                     hidden: true,
                                     width: 119,
-                                    dataIndex: 'userLeaveId',
+                                    dataIndex: 'hrLeaveId',
                                     text: 'userLeaveId'
                                 },
                                 {
@@ -650,7 +652,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                                 },
                                 {
                                     xtype: 'gridcolumn',
-                                    dataIndex: 'leaveStatus',
+                                    dataIndex: 'leaveRemain',
                                     text: 'Kalan'
                                 },
                                 {
@@ -670,14 +672,14 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                             xtype: 'form',
                             region: 'north',
                             height: 32,
-                            id: 'hrGridSearch1',
+                            id: 'hrLeaveGridSearch',
                             margin: '3 0 3 0',
                             layout: 'border',
                             items: [
                                 {
                                     xtype: 'textfield',
                                     region: 'center',
-                                    id: 'searchHrGrid1',
+                                    id: 'searchHrLeaveGrid',
                                     emptyText: 'Ara..',
                                     enableKeyEvents: true
                                 }
@@ -696,7 +698,20 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                                 {
                                     xtype: 'combobox',
                                     anchor: '100%',
+                                    hidden: true,
+                                    id: 'hrLeaveId',
+                                    fieldLabel: 'Kayıt Türü',
+                                    autoLoadOnValue: true,
+                                    displayField: 'name',
+                                    minChars: 0,
+                                    store: 'ludLeaveRecordType',
+                                    valueField: 'value'
+                                },
+                                {
+                                    xtype: 'combobox',
+                                    anchor: '100%',
                                     id: 'recordTypeId',
+                                    itemId: 'recordTypeId',
                                     fieldLabel: 'Kayıt Türü',
                                     autoLoadOnValue: true,
                                     displayField: 'name',
@@ -744,6 +759,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                                     xtype: 'datefield',
                                     anchor: '100%',
                                     id: 'startDate',
+                                    itemId: 'startDate',
                                     fieldLabel: 'Başlangıç Tarihi',
                                     format: 'd/m/Y'
                                 },
@@ -751,12 +767,14 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                                     xtype: 'numberfield',
                                     anchor: '100%',
                                     id: 'time',
+                                    itemId: 'time',
                                     fieldLabel: 'Süre'
                                 },
                                 {
                                     xtype: 'datefield',
                                     anchor: '100%',
                                     id: 'endDate',
+                                    itemId: 'endDate',
                                     fieldLabel: 'Bitiş Tarihi',
                                     format: 'd/m/Y'
                                 },
@@ -764,6 +782,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                                     xtype: 'datefield',
                                     anchor: '100%',
                                     id: 'leaveStartWorkDate',
+                                    itemId: 'leaveStartWorkDate',
                                     fieldLabel: 'Dönüş Tarihi',
                                     format: 'd/m/Y'
                                 },
@@ -771,6 +790,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                                     xtype: 'combobox',
                                     anchor: '100%',
                                     id: 'leaveStatus',
+                                    itemId: 'leaveStatus',
                                     fieldLabel: 'Statü',
                                     autoLoadOnValue: true,
                                     displayField: 'name',
@@ -784,44 +804,68 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                             xtype: 'gridpanel',
                             region: 'east',
                             split: false,
-                            id: 'permissionRightGrid',
-                            width: 409,
-                            collapsed: false,
+                            id: 'leaveDetailGrid',
+                            width: 368,
+                            collapsed: true,
                             collapsible: true,
                             title: 'İzin Hakları',
                             split: true,
                             forceFit: true,
+                            store: 'hrLeaveDetail',
                             columns: [
                                 {
-                                    xtype: 'datecolumn',
-                                    width: 99,
-                                    dataIndex: 'date',
+                                    xtype: 'gridcolumn',
+                                    flex: 2,
+                                    width: 94,
+                                    dataIndex: 'leaveDetailYear',
                                     text: 'Yıl'
                                 },
                                 {
                                     xtype: 'gridcolumn',
-                                    dataIndex: 'string',
-                                    width: 207,
+                                    flex: 2,
+                                    hidden: true,
+                                    width: 94,
+                                    dataIndex: 'leaveDetailYearId',
+                                    text: 'yearId'
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    hidden: true,
+                                    width: 99,
+                                    dataIndex: 'hrLeaveDetailId',
+                                    text: 'leaveDetailId'
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    hidden: true,
+                                    width: 99,
+                                    dataIndex: 'leaveDetailUserId',
+                                    text: 'leaveDetailUserId'
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    flex: 2,
+                                    width: 89,
+                                    dataIndex: 'leaveDetailDay',
                                     text: 'İzin Hakkı'
                                 },
                                 {
                                     xtype: 'gridcolumn',
+                                    flex: 2,
                                     width: 207,
-                                    dataIndex: 'string',
+                                    dataIndex: 'leaveDetailRemain',
                                     text: 'Kalan İzin'
-                                },
-                                {
-                                    xtype: 'booleancolumn',
-                                    dataIndex: 'bool',
-                                    text: 'Statü'
                                 }
                             ],
+                            viewConfig: {
+                                itemId: 'mytable3'
+                            },
                             dockedItems: [
                                 {
                                     xtype: 'form',
                                     dock: 'top',
                                     height: 32,
-                                    id: 'hrGridSearch6',
+                                    id: 'hrLeaveDetailGridSearch',
                                     margin: '3 0 3 0',
                                     width: 100,
                                     layout: 'border',
@@ -829,15 +873,25 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                                         {
                                             xtype: 'numberfield',
                                             region: 'center',
-                                            id: 'searchHrGrid6',
+                                            id: 'leaveDetailDay',
                                             margin: '0 3 0 0',
                                             labelWidth: 60,
                                             emptyText: 'İzin Hakkı',
                                             enableKeyEvents: true
                                         },
                                         {
+                                            xtype: 'textfield',
+                                            region: 'west',
+                                            hidden: true,
+                                            id: 'leaveDetailId',
+                                            margin: '0 3 0 0',
+                                            width: 92,
+                                            labelWidth: 50
+                                        },
+                                        {
                                             xtype: 'combobox',
                                             region: 'west',
+                                            id: 'leaveDetailYearId',
                                             margin: '0 3 0 0',
                                             width: 92,
                                             labelWidth: 50,
@@ -851,6 +905,7 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                                         {
                                             xtype: 'button',
                                             region: 'east',
+                                            id: 'btnAddLeaveDetail',
                                             margin: '0 3 0 0',
                                             width: 60,
                                             text: 'Ekle'
@@ -858,11 +913,16 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                                         {
                                             xtype: 'button',
                                             region: 'east',
+                                            id: 'btnRemoveLeaveDetail',
                                             ui: 'dashboardWarningRed-small',
                                             width: 60,
                                             text: 'Sil'
                                         }
                                     ]
+                                },
+                                {
+                                    xtype: 'generalPagingToolbar',
+                                    dock: 'bottom'
                                 }
                             ]
                         }
@@ -870,14 +930,14 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                 },
                 {
                     xtype: 'panel',
-                    id: 'employeePayment',
+                    id: 'hrPayment',
                     layout: 'border',
                     title: 'Ödeme Bilgileri',
                     items: [
                         {
                             xtype: 'gridpanel',
                             region: 'center',
-                            id: 'employeePaymentGrid',
+                            id: 'hrPaymentGrid',
                             title: 'Ödeme Listesi',
                             columns: [
                                 {
@@ -985,14 +1045,14 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                 },
                 {
                     xtype: 'panel',
-                    id: 'employeeSalary',
+                    id: 'hrSalary',
                     layout: 'border',
                     title: 'Maaş Bilgileri',
                     items: [
                         {
                             xtype: 'gridpanel',
                             region: 'center',
-                            id: 'employeeSalaryGrid',
+                            id: 'hrSalaryGrid',
                             title: 'Maaş Listesi',
                             columns: [
                                 {
@@ -1100,14 +1160,14 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                 },
                 {
                     xtype: 'panel',
-                    id: 'employeeDebt',
+                    id: 'hrDebt',
                     layout: 'border',
                     title: 'Zimmet Bilgileri',
                     items: [
                         {
                             xtype: 'gridpanel',
                             region: 'center',
-                            id: 'employeeDebtGrid',
+                            id: 'hrDebtGrid',
                             title: 'Zimmet Listesi',
                             columns: [
                                 {
@@ -1215,14 +1275,14 @@ Ext.define('byzCorp.view.hrSaveOrUpdate', {
                 },
                 {
                     xtype: 'panel',
-                    id: 'employeeEducation',
+                    id: 'hrEducation',
                     layout: 'border',
                     title: 'Eğitim/Sertifika Bilgileri',
                     items: [
                         {
                             xtype: 'gridpanel',
                             region: 'center',
-                            id: 'employeeEducationGrid',
+                            id: 'hrEducationGrid',
                             title: 'Eğitim/Sertifika Listesi',
                             columns: [
                                 {

@@ -24,21 +24,37 @@ Ext.define('byzCorp.controller.HrController', {
         "#btnHrSaveOrUpdateWindow": {
             click: 'onBtnHrSaveOrUpdateWindowClick'
         },
-        "#employeeTabPanel": {
-            tabchange: 'onEmployeeTabPanelTabChange'
+        "#hrTabPanel": {
+            tabchange: 'onHrTabPanelTabChange'
         },
         "#btnHrSaveOrUpdate": {
             click: 'onBtnHrSaveOrUpdateClick'
         },
-        "#employeeLeaveGrid": {
-            rowclick: 'onEmployeeLeaveGridRowClick'
+        "#hrLeaveGrid": {
+            rowclick: 'onHrLeaveGridRowClick'
         },
         "#recordTypeId": {
             change: 'onRecordTypeIdChange'
+        },
+        "#searchHrGrid": {
+            keyup: 'onSearchHrGridKeyup'
+        },
+        "#searchHrLeaveGrid": {
+            keyup: 'onSearchHrLeaveGridKeyup'
+        },
+        "#btnAddLeaveDetail": {
+            click: 'onBtnAddLeaveDetailClick'
+        },
+        "#leaveDetailGrid": {
+            expand: 'onLeaveDetailGridExpand'
+        },
+        "#btnRemoveLeaveDetail": {
+            click: 'onBtnRemoveLeaveDetailClick'
         }
     },
 
     onBtnHrSaveOrUpdateWindowClick: function(button, e, eOpts) {
+        debugger;
         var winHrSaveOrUpdate = Ext.create('byzCorp.view.hrSaveOrUpdate',{
             title: button.text,
             xtype:'panel',
@@ -51,40 +67,51 @@ Ext.define('byzCorp.controller.HrController', {
             winHrSaveOrUpdate.show();
         }else{
             winHrSaveOrUpdate.show();
-            Ext.getCmp('employeeSubInfoWest').getForm().setValues(hrGridSelected[0].data);
-            Ext.getCmp('employeeSubInfoEast').getForm().setValues(hrGridSelected[0].data);
-            Ext.getCmp('employeeSubInfoCenter').getForm().setValues(hrGridSelected[0].data);
-            Ext.getCmp('employeeInfoWest').getForm().setValues(hrGridSelected[0].data);
-            Ext.getCmp('employeeInfoEast').getForm().setValues(hrGridSelected[0].data);
-            Ext.getCmp('employeeInfoCenter').getForm().setValues(hrGridSelected[0].data);
+            Ext.getCmp('hrSubInfoWest').getForm().setValues(hrGridSelected[0].data);
+            Ext.getCmp('hrSubInfoEast').getForm().setValues(hrGridSelected[0].data);
+            Ext.getCmp('hrSubInfoCenter').getForm().setValues(hrGridSelected[0].data);
+            Ext.getCmp('hrInfoWest').getForm().setValues(hrGridSelected[0].data);
+            Ext.getCmp('hrInfoEast').getForm().setValues(hrGridSelected[0].data);
+            Ext.getCmp('hrInfoCenter').getForm().setValues(hrGridSelected[0].data);
            }
     },
 
-    onEmployeeTabPanelTabChange: function(tabPanel, newCard, oldCard, eOpts) {
+    onHrTabPanelTabChange: function(tabPanel, newCard, oldCard, eOpts) {
         debugger;
-        var userId = Ext.getCmp('hrGrid').getSelectionModel().getSelected().items[0].data.userId;
-        if((tabPanel.getActiveTab().getId()!='employeeInfo')){
-           Ext.getCmp(tabPanel.getActiveTab().getId()+'Grid').getStore().load({
+        var userId = Ext.getCmp('userId').getValue();
+        if(userId==""){
+          userId = Ext.getCmp('hrGrid').getSelectionModel().getSelected().items[0].data.userId;
+        }
+        if((tabPanel.getActiveTab().getId()!='hrInfo')){
+        Ext.getCmp(tabPanel.getActiveTab().getId()+'Grid').getStore().load({
             params:{
                 userId : userId
             }
         });
+        if((tabPanel.getActiveTab().getId()!='hrLeave')){
+            Ext.getCmp('leaveDetailGrid').getStore().load({
+                    params:{
+                        userId : userId
+                    }
+            });
+        }
         }
     },
 
     onBtnHrSaveOrUpdateClick: function(button, e, eOpts) {
         var scope = this;
-        var activeTabId = Ext.getCmp('employeeTabPanel').getActiveTab().id;
-        if(activeTabId=='employeeInfo'){
+        var activeTabId = Ext.getCmp('hrTabPanel').getActiveTab().id;
+        debugger;
+        if(activeTabId=='hrInfo'){
             Ext.Ajax.request({
-            url:'/byzCorp/hr/saveOrUpdateEmployee',
+            url:'/byzCorp/hr/saveOrUpdateHr',
             params : {
-                subInfoWest : Ext.encode(Ext.getCmp('employeeSubInfoWest').getForm().getValues()),
-                subInfoEast : Ext.encode(Ext.getCmp('employeeSubInfoEast').getForm().getValues()),
-                subInfoCenter :Ext.encode(Ext.getCmp('employeeSubInfoCenter').getForm().getValues()),
-                infoWest : Ext.encode(Ext.getCmp('employeeInfoWest').getForm().getValues()),
-                infoEast : Ext.encode(Ext.getCmp('employeeInfoEast').getForm().getValues()),
-                infoCenter : Ext.encode(Ext.getCmp('employeeInfoCenter').getForm().getValues())
+                subInfoWest : Ext.encode(Ext.getCmp('hrSubInfoWest').getForm().getValues()),
+                subInfoEast : Ext.encode(Ext.getCmp('hrSubInfoEast').getForm().getValues()),
+                subInfoCenter :Ext.encode(Ext.getCmp('hrSubInfoCenter').getForm().getValues()),
+                infoWest : Ext.encode(Ext.getCmp('hrInfoWest').getForm().getValues()),
+                infoEast : Ext.encode(Ext.getCmp('hrInfoEast').getForm().getValues()),
+                infoCenter : Ext.encode(Ext.getCmp('hrInfoCenter').getForm().getValues())
             },
             success : function(response){
                 var jsonData = Ext.util.JSON.decode(response.responseText.trim());
@@ -103,11 +130,39 @@ Ext.define('byzCorp.controller.HrController', {
                 Ext.getCmp("managerId").focus();
             }
         });
+        }else if(activeTabId=='hrLeave'){
+            Ext.Ajax.request({
+            url:'/byzCorp/hr/saveOrUpdateHrLeave',
+            params : {
+                subInfoWest : Ext.encode(Ext.getCmp('hrSubInfoWest').getForm().getValues()),
+                subInfoEast : Ext.encode(Ext.getCmp('hrSubInfoEast').getForm().getValues()),
+                subInfoCenter :Ext.encode(Ext.getCmp('hrSubInfoCenter').getForm().getValues()),
+                hrLeave : Ext.encode(Ext.getCmp('leaveSaveOrUpdateForm').getForm().getValues())
+            },
+            success : function(response){
+                var jsonData = Ext.util.JSON.decode(response.responseText.trim());
+                if(jsonData.success){debugger;
+                scope.showSuccessMessage();
+                Ext.getCmp("reportTypeId").focus();
+                Ext.getCmp('hrGrid').getStore().load();
+                Ext.getCmp('hrLeaveGrid').getStore().load();
+                Ext.getCmp("leaveSaveOrUpdateForm").getForm().reset();
+                }else{
+                    scope.showErrorMessage(jsonData.message);
+                    Ext.getCmp("reportTypeId").focus();
+                }
+            },
+            failure: function (response) {
+                var jsonData = Ext.util.JSON.decode(response.responseText.trim());
+                scope.showErrorMessage(jsonData.message);
+                Ext.getCmp("reportTypeId").focus();
+            }
+        });
         }
 
     },
 
-    onEmployeeLeaveGridRowClick: function(tableview, record, element, rowIndex, e, eOpts) {
+    onHrLeaveGridRowClick: function(tableview, record, element, rowIndex, e, eOpts) {
         debugger;
         if(record.data.recordTypeId==1){
             Ext.getCmp("reportTypeId").setVisible(false);
@@ -132,6 +187,105 @@ Ext.define('byzCorp.controller.HrController', {
             Ext.getCmp("leaveYear").setVisible(false);
             Ext.getCmp("reportTypeId").setVisible(true);
         }
+    },
+
+    onSearchHrGridKeyup: function(textfield, e, eOpts) {
+        var query = Ext.getCmp("searchHrGrid").getValue();
+        var hrGrid = Ext.getCmp("hrGrid");
+        hrGrid.getStore().load({
+            params:{
+                query : query
+            }
+        });
+    },
+
+    onSearchHrLeaveGridKeyup: function(textfield, e, eOpts) {
+        var query = Ext.getCmp("searchHrLeaveGrid").getValue();
+                var hrGrid = Ext.getCmp("hrLeaveGrid");
+                hrGrid.getStore().load({
+                    params:{
+                        query : query
+                    }
+                });
+    },
+
+    onBtnAddLeaveDetailClick: function(button, e, eOpts) {
+        debugger;
+        var scope = this;
+        leaveDetailYear = Ext.getCmp('leaveDetailYearId').getValue();
+        leaveDetailDay = Ext.getCmp('leaveDetailDay').getValue();
+        userId = Ext.getCmp('userId').getValue();
+        Ext.Ajax.request({
+            url:'/byzCorp/hr/saveOrUpdateHrLeaveDetail',
+            params : {
+                leaveDetailYear : leaveDetailYear,
+                leaveDetailDay : leaveDetailDay,
+                userId : userId
+            },
+            success : function(response){
+                var jsonData = Ext.util.JSON.decode(response.responseText.trim());
+                if(jsonData.success){
+                scope.showSuccessMessage();
+                Ext.getCmp('leaveDetailYearId').focus();
+                Ext.getCmp('leaveDetailGrid').getStore().load();
+                }else{
+                    scope.showErrorMessage(jsonData.message);
+                    Ext.getCmp("leaveDetailYearId").focus();
+                }
+            },
+            failure: function (response) {
+                var jsonData = Ext.util.JSON.decode(response.responseText.trim());
+                scope.showErrorMessage(jsonData.message);
+                Ext.getCmp("leaveDetailYearId").focus();
+            }
+
+        });
+    },
+
+    onLeaveDetailGridExpand: function(p, eOpts) {
+        debugger;
+        var userId = Ext.getCmp('userId').getValue();
+        Ext.getCmp('leaveDetailGrid').getStore().load({
+            params:{
+                userId : userId
+            }
+        });
+        /*Ext.getCmp('leaveDetailGrid').getStore().addListener('beforeload', function(store, option){
+            option.params_counrtyId = countryId;
+        });*/
+
+    },
+
+    onBtnRemoveLeaveDetailClick: function(button, e, eOpts) {
+        debugger;
+        var scope = this;
+        hrLeaveDetailId = Ext.getCmp('leaveDetailGrid').getSelectionModel().getSelected().items[0].data.hrLeaveDetailId;
+        if(hrLeaveDetailId==""){
+            scope.showWarningMessage("Listeden silmek istediğiniz kaydı seçiniz.");
+        }
+        Ext.Ajax.request({
+            url:'/byzCorp/hr/removeHrLeaveDetail',
+            params : {
+                hrLeaveDetailId : hrLeaveDetailId
+            },
+            success : function(response){
+                var jsonData = Ext.util.JSON.decode(response.responseText.trim());
+                if(jsonData.success){
+                scope.showSuccessMessage('Silme');
+                Ext.getCmp('leaveDetailYear').focus();
+                Ext.getCmp('leaveDetailGrid').getStore().load();
+                }else{
+                    scope.showErrorMessage(jsonData.message);
+                    Ext.getCmp("leaveDetailYear").focus();
+                }
+            },
+            failure: function (response) {
+                var jsonData = Ext.util.JSON.decode(response.responseText.trim());
+                scope.showErrorMessage(jsonData.message);
+                Ext.getCmp("leaveDetailYear").focus();
+            }
+
+        });
     }
 
 });
